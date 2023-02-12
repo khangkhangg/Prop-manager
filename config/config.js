@@ -2,8 +2,8 @@ var path = require('path');
 
 module.exports = {
     "development": {
-        "username": process.env.DB_UNAME,
-        "password": process.env.DB_PASSWD,
+        "username": 'root',
+        "password": null,
         "database": "propsmanager",
         "host": "127.0.0.1",
         "dialect": "mysql"

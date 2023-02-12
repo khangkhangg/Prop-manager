@@ -6,11 +6,9 @@ const cron = require('node-cron');
 const express = require('express');
 const path = require('path');
 const db = require('./models');
-const apiRoutes = require('./routes/apiRoutes');
 const expressSession = require('express-session');
 const SessionStore = require('express-session-sequelize')(expressSession.Store)
 const cookieParser = require('cookie-parser');
-const passport = require('./passport')
 const appSettings = require('./appSettings');
 // const enforce = require('express-sslify');
 
@@ -46,6 +44,9 @@ db.sequelize.sync(
         appSettings.init(),
     ]);
 }).then(() => {
+    const apiRoutes = require('./routes/apiRoutes');
+    const passport = require('./passport');
+
     invoiceJob.schedule();
     const sequelizeSessionStore = new SessionStore({
         db: db.sequelize,
@@ -76,10 +77,10 @@ db.sequelize.sync(
     app.listen(PORT, () => {
         console.log('Listening on port ' + PORT);
     });
-    }).catch(err => { 
-        console.log("There was an error connecting to the database or performing follow-up logic");
-        console.error(err);
-        
+}).catch(err => {
+    console.log("There was an error connecting to the database or performing follow-up logic");
+    console.error(err);
+
 });
 
 
@@ -110,7 +111,7 @@ function generateDatabaseSeed() {
                     zip: 90210,
                 });
             })
-        
+
     }
 
     var newUnitPromise = db.Unit.create({
@@ -167,5 +168,5 @@ function generateDatabaseSeed() {
             // newAdmin.addUnit(newUnit).then(()=>
             //     newTenant.addUnit(newUnit))
         });
-    
+
 }

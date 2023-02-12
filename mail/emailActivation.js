@@ -1,7 +1,7 @@
 const appSettings = require('../appSettings');
-const api_key = appSettings.getSetting('PRIVATE_KEY');
-const DOMAIN = appSettings.getSetting('DOMAIN');
-const mailgun = require('mailgun-js')({ apiKey: api_key, domain: DOMAIN });
+const apiKey = appSettings.getSetting('PRIVATE_KEY');
+const domain = appSettings.getSetting('DOMAIN');
+const mailgun = require('mailgun-js')({ apiKey, domain });
 const sendMail = require('./sendMail');
 
 
