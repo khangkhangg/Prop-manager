@@ -9,6 +9,8 @@ import axios from 'axios';
  * @param {any} userData - A list of user properties required for a user account
  * @returns {Promise<any>}
  */
+axios.defaults.baseURL = 'http://localhost:3001';
+
 function createNewUser(userData) {
     return axios
         .post('/api/createUser', userData)

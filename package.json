@@ -20,8 +20,9 @@
   },
   "homepage": "https://github.com/snarfblam/Prop-manager#readme",
   "dependencies": {
-    "bcrypt": "^2.0.1",
+    "bcrypt": "^3.0.6",
     "cookie-parser": "^1.4.3",
+    "cors": "^2.8.5",
     "dotenv": "^5.0.1",
     "exports": "0.0.1",
     "express": "^4.16.3",
