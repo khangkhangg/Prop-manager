@@ -124,8 +124,8 @@ function generateDatabaseSeed() {
         role: "admin",
         activationCode: "admin",
         authtype: null,
-        local_username: null,
-        local_password: null,
+        local_username: 'admin',
+        local_password: 'admin',
         googleId: null,
         phone: "000-000-0000",
         email: "fake@web.com",
@@ -139,8 +139,8 @@ function generateDatabaseSeed() {
         role: "tenant",
         activationCode: "tenant",
         authtype: null,
-        local_username: null,
-        local_password: null,
+        local_username: 'tenant',
+        local_password: 'tenant',
         googleId: null,
         phone: "000-000-0000",
         email: "fake@mail.com",
@@ -148,6 +148,13 @@ function generateDatabaseSeed() {
         city: "none",
         state: "CA",
         zip: 90210,
+    });
+    var newAdminCredentialPromise = db.Cred.create({
+        id: 1,
+        local_password: "$2b$10$ckfSfkS1q4KW.cE1D08npuinfOeA5rGhwFuXwDOOtK0ITjZdCehyO",
+        UserId: 1,
+        createdAt: '2018-04-17 00:58:52',
+        updatedAt: '2018-04-17 00:58:52',
     });
     var newPaymentPromise = db.Payment.create({
         amount: 450,
@@ -163,7 +170,7 @@ function generateDatabaseSeed() {
     });
 
     return Promise
-        .all([newUnitPromise, newAdminPromise, newTenantPromise, newPaymentPromise])
+        .all([newUnitPromise, newAdminPromise, newTenantPromise, newPaymentPromise, newAdminCredentialPromise])
         .then(([newUnit, newAdmin, newTenant, newPayment]) => {
             newUnit.addUsers([newAdmin, newTenant]);
             // newAdmin.addUnit(newUnit).then(()=>
